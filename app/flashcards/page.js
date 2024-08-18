@@ -1,3 +1,5 @@
+//For fetching and displaying all of user's saved flashcard sets
+//flashcards overview page
 'use client'
 
 //fetching and displaying all of the user's saved flashcard sets
@@ -36,7 +38,7 @@ export default function Flashcard(){
             if (docSnap.exists()) {
                 const collections = docSnap.data().flashcards || []
                 setFlashcards(collections)
-            } else {
+            } else { //if the user doesn't exit, create one with empty flashcards array
                 await setDoc(docRef, { flashcards: []})
             }
         }
@@ -44,6 +46,7 @@ export default function Flashcard(){
     }, [user])
 
     //when a user clicks on a flashcard set, they are navigated to a detailed view of that set
+    //uses Next.js's 'router.push' to navigate to '/flashcard' page with the selected flashcard set's ID as a query parameter
     const handleCardClick = (id) =>{
         router.push(`/flashcard/${id}`)
     }
@@ -54,7 +57,7 @@ export default function Flashcard(){
           <Grid container spacing={3} sx={{ mt: 4 }}>
             {flashcards.map((flashcard, index) => (
               <Grid item xs={12} sm={6} md={4} key={index}>
-                <Card> {/*Each card displays the name of the flashcard set and is clickable*/}
+                <Card> {/*Each card displays the name of the flashcard set and is clickable, leading to detailed view of that set*/}
                   <CardActionArea onClick={() => handleCardClick(flashcard.name)}>
                     <CardContent>
                       <Typography variant="h5" component="div">

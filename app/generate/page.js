@@ -1,5 +1,5 @@
 //in this page, we let user enter text input and generate flashcard texts from open ai api
-// then, save the flashcards to Firebase and display them to user
+// then, save the flashcards  to users' account in firebase
 'use client'
 
 import { useState } from 'react'
