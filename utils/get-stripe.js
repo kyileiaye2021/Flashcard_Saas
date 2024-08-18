@@ -1,7 +1,8 @@
+//utility function
 import { loadStripe } from '@stripe/stripe-js'
 
-let stripePromise
-
+//declared outside the func so it can be reused across diff calls to getStripe()
+let stripePromise //to store the promise returned by loadstripe
 
 //ensures that we only create one instance of Stripe, reusing it if it already exists.
 const getStripe = () => {

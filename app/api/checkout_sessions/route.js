@@ -69,7 +69,7 @@ export async function GET(req) {
     //extracts the query parameters from the request URL
     const searchParams = req.nextUrl.searchParams
 
-    //retrieve the val of session_id query parameter
+    //retrieve the val of session_id from query parameter of the request
     const session_id = searchParams.get('session_id')
 
     try {
