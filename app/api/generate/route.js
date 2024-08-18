@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import OpenAI  from "openai";
 
-//defining system prompt
+//defining system prompt that instructs the AI on how to create flashcards
 const systemPrompt = `
 You are a flashcard creator, you take in text and create multiple flashcards from it. Make sure to create exactly 10 flashcards.
 Both front and back should be one sentence long.
@@ -21,7 +21,7 @@ export async function POST(req) {
     const data = await req.text() //extracts text data from the request body
 
     //implement the Open AI API call 
-    const completion = await openai.chat.completions.create({
+    const completion = await openai.chat.completions.create({ //create a chat completion req to Open ai api
         messages: [
             { role: 'system', content: systemPrompt},
             { role: 'user', content: data},
@@ -32,8 +32,9 @@ export async function POST(req) {
 
     //process API response 
     //parse the JSON content from the OpenAI API response
-    const flashcard = JSON.parse(completion.choices[0].message.content)
+    const flashcards = JSON.parse(completion.choices[0].message.content)
 
-    //return the flashcards as a JSON response
+    //return the 'flashcards' array as a JSON response
+    //This sends the flashcards back to the client as a JSON response
     return NextResponse.json(flashcards.flashcards)
 }
