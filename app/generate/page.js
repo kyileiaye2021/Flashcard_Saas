@@ -1,3 +1,5 @@
+//in this page, we let user enter text input and generate flashcard texts from open ai api
+// then, save the flashcards to Firebase and display them to user
 'use client'
 
 import { useState } from 'react'
@@ -40,7 +42,6 @@ export default function Generate() {
         //fetch document for curr user from Firestore using their user.id
         const userDocRef = doc(collection(db, 'users'), user.id)
         const userDocSnap = await getDoc(userDocRef)
-        
   
         const batch = writeBatch(db)
         
@@ -122,6 +123,29 @@ export default function Generate() {
         </Box>
 
         {/*display the generated flashcards*/}
+        {/*creates a grid of cards, each representing a flash card with its front and back content */}
+        {flashcards.length > 0 && (
+          <Box sx={{ mt: 4 }}>
+            <Typography variant="h5" component="h2" gutterBottom>
+              Generated Flashcards
+            </Typography>
+            <Grid container spacing={2}>
+              {flashcards.map((flashcard, index) => (
+                <Grid item xs={12} sm={6} md={4} key={index}>
+                  <Card>
+                    <CardContent>
+                      <Typography variant="h6">Front:</Typography>
+                      <Typography>{flashcard.front}</Typography>
+                      <Typography variant="h6" sx={{ mt: 2 }}>Back:</Typography>
+                      <Typography>{flashcard.back}</Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              ))}
+            </Grid>
+          </Box>
+        )}
+
         {flashcards.length > 0 && (
 
               <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}>
@@ -131,6 +155,7 @@ export default function Generate() {
               </Box>
 
           )}
+          {/*dialog component for namiing and saving the flashcard set */}
           <Dialog open={dialogOpen} onClose={handleCloseDialog}>
           <DialogTitle>Save Flashcard Set</DialogTitle>
           <DialogContent>
