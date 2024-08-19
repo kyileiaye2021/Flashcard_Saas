@@ -18,6 +18,8 @@ import {
   DialogContentText,
   DialogActions,
 } from '@mui/material'
+import { doc, collection, getDoc, writeBatch } from 'firebase/firestore';
+import db from '../../firebase.js'
 
 export default function Generate() {
   const [text, setText] = useState('')

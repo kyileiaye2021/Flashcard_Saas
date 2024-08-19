@@ -64,19 +64,55 @@ export default function Flashcard() {
                 <Card>
                   <CardActionArea onClick={() => handleCardClick(flashcard.id)}>
                     <CardContent>
-                      <Box sx={{ /* Styling for flip animation */ }}>
-                        <div>
-                          <div>
+                      <Box
+                        sx={{
+                          perspective: '1000px',
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            position: 'relative',
+                            width: '100%',
+                            height: '200px',
+                            transformStyle: 'preserve-3d',
+                            transform: flipped[flashcard.id] ? 'rotateY(180deg)' : 'rotateY(0deg)',
+                            transition: 'transform 0.6s',
+                          }}
+                        >
+                          <Box
+                            sx={{
+                              position: 'absolute',
+                              width: '100%',
+                              height: '100%',
+                              backfaceVisibility: 'hidden',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              backgroundColor: '#fff',
+                            }}
+                          >
                             <Typography variant="h5" component="div">
                               {flashcard.front}
                             </Typography>
-                          </div>
-                          <div>
+                          </Box>
+                          <Box
+                            sx={{
+                              position: 'absolute',
+                              width: '100%',
+                              height: '100%',
+                              backfaceVisibility: 'hidden',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              backgroundColor: '#fff',
+                              transform: 'rotateY(180deg)',
+                            }}
+                          >
                             <Typography variant="h5" component="div">
                               {flashcard.back}
                             </Typography>
-                          </div>
-                        </div>
+                          </Box>
+                        </Box>
                       </Box>
                     </CardContent>
                   </CardActionArea>

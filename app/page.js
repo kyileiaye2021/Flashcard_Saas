@@ -168,7 +168,7 @@ const Home = () => {
       <Box sx={{my: 6}}>
         <Typography variant="h4" component="h2" gutterBottom>Features</Typography>
         <Grid container spacing={4}>
-           Feature items
+           {/*Feature items*/}
         </Grid>
       </Box>
       
@@ -177,7 +177,7 @@ const Home = () => {
       <Box sx={{my: 6, textAlign: 'center'}}>
         <Typography variant="h4" component="h2" gutterBottom>Pricing</Typography>
         <Grid container spacing={4} justifyContent="center">
-           Pricing plans 
+           {/*Pricing plans */}
         </Grid>
       </Box>
     </main>
