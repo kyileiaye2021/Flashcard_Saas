@@ -14,7 +14,7 @@ import {
 } from '@mui/material'
 import { doc, collection, getDoc, setDoc } from 'firebase/firestore'
 import { db } from '@/firebase'  // Adjust the import path to your Firebase config
-
+import { useSearchParams } from 'next/navigation'
 
 export default function Flashcard() {
     //uses Clerk's userUser hook for authentication

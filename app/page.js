@@ -93,7 +93,8 @@
     </main>
   );
 }*/
-
+//landing page for our Flashcard Saas application
+import getStripe from '../utils/get-stripe';
 import React from 'react';
 import {
   Box,
@@ -112,12 +113,12 @@ const Home = () => {
   const handleSubmit = async () => {
     const checkoutSession = await fetch('/api/checkout_sessions', {
       method: 'POST',
-      headers: { origin: 'https//localhost:3000' },
+      headers: { origin: 'http://localhost:3000' },
     })
     const checkoutSessionJson = await checkoutSession.json()
 
     const stripe = await getStripe()
-    const {error} = await stripe.redirectToCheckout({
+    const { error } = await stripe.redirectToCheckout({
       sessionId: checkoutSessionJson.id,
     })
 
@@ -167,7 +168,7 @@ const Home = () => {
       <Box sx={{my: 6}}>
         <Typography variant="h4" component="h2" gutterBottom>Features</Typography>
         <Grid container spacing={4}>
-          {/* Feature items */}
+           Feature items
         </Grid>
       </Box>
       
@@ -176,7 +177,7 @@ const Home = () => {
       <Box sx={{my: 6, textAlign: 'center'}}>
         <Typography variant="h4" component="h2" gutterBottom>Pricing</Typography>
         <Grid container spacing={4} justifyContent="center">
-          {/* Pricing plans */}
+           Pricing plans 
         </Grid>
       </Box>
     </main>

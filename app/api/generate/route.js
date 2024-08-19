@@ -17,7 +17,7 @@ You should return in the following JSON format:
 `
 //creates a new OpenAI client instance and extracts the text data fro the req body
 export async function POST(req) {
-    const openai = new OpenAI()
+    const openai = new OpenAI({apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY})
     const data = await req.text() //extracts text data from the request body
 
     //implement the Open AI API call 

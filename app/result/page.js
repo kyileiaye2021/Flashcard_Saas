@@ -1,5 +1,7 @@
 //for handling the post-payment process and displaying the outcoe to the user
 import React from "react"
+import { useRouter } from "next/router"
+import { useSearchParams } from "next/navigation"
 import { Container, CircularProgress, Typography, Box } from '@mui/material'
 
 const ResultPage = () => {
@@ -92,4 +94,4 @@ const ResultPage = () => {
         </Container>
       )
 }
-  
+export default ResultPage;
